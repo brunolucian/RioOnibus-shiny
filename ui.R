@@ -77,7 +77,7 @@ ui <- dashboardPage(
               fluidRow(
                 box(
                   width = 8, status = "info", solidHeader = TRUE,
-                  title = "Popularity by package (last 5 min)",
+                  title = "Localização dos onibus da linha selecionada (1 min)",
                   br(),
                   leafletOutput("map", height="600px"), 
                   br(),
