@@ -3,6 +3,7 @@ library(dplyr)
 library(shiny)
 library(leaflet)
 library(shinyjs)
+library(shinydashboard)
 
 # ==== fonction allowing geolocalisation
 jsCode <- '
