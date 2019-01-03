@@ -1,5 +1,5 @@
 # ==== libraries
-library(tidyverse)
+library(dplyr)
 library(shiny)
 library(leaflet)
 library(shinyjs)
