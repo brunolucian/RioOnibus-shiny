@@ -2,7 +2,7 @@
 ui <- dashboardPage(
   dashboardHeader(title = "DataRioBus"),
   dashboardSidebar(
-    selectInput("linhas", label = "Type", width = "100%",
+    selectInput("linhas", label = "Selecione a linha", width = "100%",
                 choices =  c(readRDS("www/linhas.RDS"))),
     sidebarMenu(
       menuItem("Dashboard", tabName = "dashboard"),
@@ -11,7 +11,7 @@ ui <- dashboardPage(
   ),
   dashboardBody(
     tags$script('
-              $(document).ready(function () {
+                $(document).ready(function () {
                 
                 function getLocation(callback){
                 var options = {
@@ -87,16 +87,17 @@ ui <- dashboardPage(
       ),
       tabItem("estatisticas",
               fluidRow(
-                column(12,
-                       dataTableOutput("cons")
-                )
-              )
-              )
+              dataTableOutput("cons"),
+              selectInput("linha_count", label = "Escolha a linha",
+                          choices =  c(readRDS("www/linhas.RDS"))),
+              valueBoxOutput("cont_linha")
+              )  
+      )
     )
   )
 )
-  
-  
-  
- 
+
+
+
+
 

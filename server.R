@@ -55,6 +55,17 @@ server <- function(input, output) {
     left_join(consorcios) %>% 
     count(consorcio)
   })
-
+  
+  n_linha <- reactive({
+    dados %>% 
+      filter(LINHA == input$linha_count) %>% 
+      summarise(num_bus = n()) %>% 
+      pull()
+  })
+  
+  output$cont_linha <- renderValueBox({
+    valueBox(
+      paste(n_linha()), "Ônibus na linha selecionada", icon = icon("bus")
+    )
+  })
 }
-
