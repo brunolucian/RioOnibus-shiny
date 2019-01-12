@@ -50,6 +50,13 @@ server <- function(input, output) {
   })
 
   output$cons <-renderDataTable({
+    dados <- jsondata()$DATA %>% as_data_frame() %>% distinct()
+    
+    names(dados) <- jsondata()$COLUMNS
+    
+    dados$LATITUDE <- as.numeric(dados$LATITUDE)
+    dados$LONGITUDE <- as.numeric(dados$LONGITUDE)
+    
     dados %>% 
     mutate(prefixo = substr(ORDEM, 1, 1)) %>% 
     left_join(consorcios) %>% 
@@ -57,6 +64,13 @@ server <- function(input, output) {
   })
   
   n_linha <- reactive({
+    dados <- jsondata()$DATA %>% as_data_frame() %>% distinct()
+    
+    names(dados) <- jsondata()$COLUMNS
+    
+    dados$LATITUDE <- as.numeric(dados$LATITUDE)
+    dados$LONGITUDE <- as.numeric(dados$LONGITUDE)
+    
     dados %>% 
       filter(LINHA == input$linha_count) %>% 
       summarise(num_bus = n()) %>% 
