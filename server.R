@@ -49,7 +49,7 @@ server <- function(input, output) {
     }
   })
 
-  output$cons <-renderDataTable({
+  output$cons <-renderPlot({
     dados <- jsondata()$DATA %>% as_data_frame() %>% distinct()
     
     names(dados) <- jsondata()$COLUMNS
@@ -58,9 +58,14 @@ server <- function(input, output) {
     dados$LONGITUDE <- as.numeric(dados$LONGITUDE)
     
     dados %>% 
-    mutate(prefixo = substr(ORDEM, 1, 1)) %>% 
-    left_join(consorcios) %>% 
-    count(consorcio)
+      mutate(prefixo = substr(ORDEM, 1, 1)) %>% 
+      left_join(consorcios) %>% 
+      count(consorcio) %>% 
+      mutate(prop = n/sum(n)) %>% 
+      ggplot(aes(x = "", y = prop, fill = consorcio)) +
+      geom_bar(stat = "identity") +
+      coord_polar("y", start = 0) +
+      scale_fill_manual("Consórcio", values = c("#A2B719", "#FDC418", "#E31919", "#0D6FA8"))
   })
   
   n_linha <- reactive({

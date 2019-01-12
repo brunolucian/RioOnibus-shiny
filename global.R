@@ -5,6 +5,8 @@ library(leaflet)
 library(shinyjs)
 library(shinydashboard)
 library(DT)
+library(ggplot2)
+library(ggthemes)
 
 # ==== fonction allowing geolocalisation
 jsCode <- '

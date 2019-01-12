@@ -87,7 +87,7 @@ ui <- dashboardPage(
       ),
       tabItem("estatisticas",
               fluidRow(
-              dataTableOutput("cons"),
+              plotOutput("cons"),
               selectInput("linha_count", label = "Escolha a linha",
                           choices =  c(readRDS("www/linhas.RDS"))),
               valueBoxOutput("cont_linha")
