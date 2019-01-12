@@ -4,6 +4,7 @@ library(shiny)
 library(leaflet)
 library(shinyjs)
 library(shinydashboard)
+library(DT)
 
 # ==== fonction allowing geolocalisation
 jsCode <- '
@@ -24,7 +25,7 @@ Shiny.onInputChange("long", coords.longitude);
 };
 '
 
-
-
-
-
+consorcios <- data.frame(prefixo = LETTERS[1:4], 
+                         consorcio = c("Intersul", "Internorte",
+                                       "Transcarioca", "Santa Cruz"), 
+                         stringsAsFactors = F)

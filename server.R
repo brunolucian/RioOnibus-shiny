@@ -48,5 +48,13 @@ server <- function(input, output) {
       map %>% fitBounds(lng - dist, lat - dist, lng + dist, lat + dist)
     }
   })
+
+  output$cons <-renderDataTable({
+    dados %>% 
+    mutate(prefixo = substr(ORDEM, 1, 1)) %>% 
+    left_join(consorcios) %>% 
+    count(consorcio)
+  })
+
 }
 

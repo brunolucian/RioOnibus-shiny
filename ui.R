@@ -5,8 +5,8 @@ ui <- dashboardPage(
     selectInput("linhas", label = "Type", width = "100%",
                 choices =  c(readRDS("www/linhas.RDS"))),
     sidebarMenu(
-      menuItem("Dashboard", tabName = "dashboard")
-      # menuItem("Raw data", tabName = "rawdata")
+      menuItem("Dashboard", tabName = "dashboard"),
+      menuItem("Estatísticas", tabName = "estatisticas")
     )
   ),
   dashboardBody(
@@ -84,7 +84,14 @@ ui <- dashboardPage(
                   verbatimTextOutput("lat")
                 )
               )
-      )
+      ),
+      tabItem("estatisticas",
+              fluidRow(
+                column(12,
+                       dataTableOutput("cons")
+                )
+              )
+              )
     )
   )
 )
